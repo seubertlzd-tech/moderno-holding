@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moderno Holding Solution LTD</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #F0CB6A;
+    --black: #0A0A0A;
+    --dark: #111111;
+    --dark2: #1A1A1A;
+    --white: #F5F5F0;
+    --gray: #888;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    transition: background 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    padding: 0.55rem 1.5rem;
+    background: var(--gold);
+    color: var(--black) !important;
+    border-radius: 2px;
+    font-weight: 700 !important;
+  }
+  .nav-cta:hover { background: var(--gold-light); color: var(--black) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(201,168,76,0.08) 0%, transparent 70%),
+      linear-gradient(135deg, #0A0A0A 40%, #1a1208 100%);
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; }
+  .hero-flag { font-size: 1.6rem; margin-bottom: 1.5rem; animation: fadeUp 0.8s ease both; }
+  .hero-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.35rem 1rem;
+    margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s 0.1s ease both;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 9vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.8s 0.2s ease both;
+  }
+  .hero h1 .accent { color: var(--gold); }
+  .hero-sub {
+    margin-top: 2rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: rgba(245,245,240,0.7);
+    line-height: 1.7;
+    max-width: 480px;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.8rem;
+    animation: fadeUp 0.8s 0.5s ease both;
+  }
+  .btn-primary {
+    padding: 0.9rem 2.5rem;
+    background: var(--gold);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    padding: 0.9rem 2.5rem;
+    background: transparent;
+    color: var(--white);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    border: 1px solid rgba(245,245,240,0.3);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* hero stats */
+  .hero-stats {
+    position: absolute;
+    right: 4rem;
+    bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 2;
+    animation: fadeLeft 0.8s 0.6s ease both;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .stat-lbl {
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* scroll line */
+  .scroll-line {
+    position: absolute;
+    left: 4rem;
+    bottom: 4rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gray);
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-line::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    animation: expandLine 1s 1s ease both;
+  }
+
+  /* ── SERVICES ── */
+  .section { padding: 8rem 4rem; }
+  .section-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-desc {
+    color: rgba(245,245,240,0.6);
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 520px;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(201,168,76,0.15);
+  }
+  .service-card {
+    background: var(--dark);
+    padding: 3rem 2.5rem;
+    transition: background 0.3s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--gold);
+    transform: scaleY(0);
+    transition: transform 0.3s;
+    transform-origin: bottom;
+  }
+  .service-card:hover { background: var(--dark2); }
+  .service-card:hover::before { transform: scaleY(1); }
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .service-card h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    color: var(--white);
+  }
+  .service-card p {
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: rgba(245,245,240,0.55);
+    line-height: 1.7;
+  }
+
+  /* ── WHY US ── */
+  .why-section {
+    padding: 8rem 4rem;
+    background: var(--dark);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .why-visual {
+    position: relative;
+    aspect-ratio: 4/5;
+    max-height: 550px;
+  }
+  .why-box {
+    position: absolute;
+    border: 1px solid rgba(201,168,76,0.3);
+  }
+  .why-box-1 {
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.06), transparent);
+  }
+  .why-box-2 {
+    top: 2rem; left: 2rem; right: -2rem; bottom: -2rem;
+    border-color: rgba(201,168,76,0.12);
+    z-index: 0;
+  }
+  .why-number {
+    position: absolute;
+    bottom: -1.5rem;
+    left: -1.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 10rem;
+    color: rgba(201,168,76,0.08);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .why-center-text {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    padding: 2rem;
+    text-align: center;
+  }
+  .why-center-text .big-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .why-center-text .big-lbl {
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(245,245,240,0.5);
+    margin-top: 0.5rem;
+  }
+
+  .values-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+  .value-item { display: flex; gap: 1.5rem; align-items: flex-start; }
+  .value-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    line-height: 1;
+    min-width: 40px;
+  }
+  .value-text h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .value-text p {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: rgba(245,245,240,0.55);
+    line-height: 1.7;
+  }
+
+  /* ── PROCESS ── */
+  .process-section { padding: 8rem 4rem; }
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    position: relative;
+  }
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 2.5rem;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .step {
+    padding: 0 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .step-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--black);
+    border: 2px solid var(--gold);
+    margin: 1.8rem auto 2rem;
+    position: relative;
+    z-index: 1;
+  }
+  .step:first-child .step-dot { background: var(--gold); }
+  .step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+  .step h4 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.6rem;
+  }
+  .step p {
+    font-size: 0.82rem;
+    color: rgba(245,245,240,0.5);
+    line-height: 1.7;
+  }
+
+  /* ── CTA BANNER ── */
+  .cta-section {
+    padding: 7rem 4rem;
+    background: linear-gradient(135deg, #1a1208 0%, #0a0a0a 60%, #1a1208 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: 'MODERNO';
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20rem;
+    color: rgba(201,168,76,0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    pointer-events: none;
+    letter-spacing: 0.05em;
+  }
+  .cta-section h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .cta-section p {
+    color: rgba(245,245,240,0.6);
+    font-size: 1rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; position: relative; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    padding: 8rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+  }
+  .contact-info h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+  .contact-info p {
+    color: rgba(245,245,240,0.55);
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: center; }
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .contact-item span {
+    font-size: 0.9rem;
+    color: rgba(245,245,240,0.7);
+  }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--dark);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--white);
+    padding: 0.9rem 1.2rem;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.25s;
+    width: 100%;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus {
+    border-color: var(--gold);
+  }
+  .form-group textarea { min-height: 120px; resize: vertical; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(201,168,76,0.15);
+    padding: 3rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  .footer-tagline {
+    font-size: 0.75rem;
+    color: var(--gray);
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+  }
+  .footer-flags { font-size: 1.3rem; }
+  .footer-copy {
+    font-size: 0.72rem;
+    color: var(--gray);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(30px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes expandLine {
+    from { width: 0; }
+    to { width: 40px; }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem; }
+    .hero-stats { right: 1.5rem; bottom: 6rem; }
+    .scroll-line { display: none; }
+    .section { padding: 5rem 1.5rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-section { grid-template-columns: 1fr; padding: 5rem 1.5rem; gap: 3rem; }
+    .why-visual { display: none; }
+    .process-section { padding: 5rem 1.5rem; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .process-steps::before { display: none; }
+    .cta-section { padding: 5rem 1.5rem; }
+    .cta-actions { flex-direction: column; align-items: center; }
+    .contact-section { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .form-row { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MODERNO HOLDING</div>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#contato" class="nav-cta">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-flag">🇧🇷 🇬🇧</div>
+    <span class="hero-label">London · Brasil · Excellence</span>
+    <h1>CONSTRUÇÃO<br><span class="accent">DE ALTO</span><br>PADRÃO</h1>
+    <p class="hero-sub">Especialistas em Light Steel Framing, Wood Framing e Drywall. Construção, Pós-Construção e Manutenção com qualidade, honestidade e padronização.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/5534999372442" target="_blank" class="btn-primary">Solicitar Orçamento</a>
+      <a href="#servicos" class="btn-outline">Ver Serviços</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">312+</div>
+      <div class="stat-lbl">Projetos</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3.5K</div>
+      <div class="stat-lbl">Seguidores</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2</div>
+      <div class="stat-lbl">Países</div>
+    </div>
+  </div>
+  <div class="scroll-line">Scroll para ver mais</div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="servicos">
+  <div class="section-label">O que oferecemos</div>
+  <h2 class="section-title">NOSSOS<br>SERVIÇOS</h2>
+  <p class="section-desc">Soluções completas em construção a seco com tecnologia de ponta e mão de obra especializada.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <h3>Light Steel Framing</h3>
+      <p>Estruturas metálicas leves de alta resistência e precisão. Tecnologia inovadora para construções rápidas, sustentáveis e duráveis.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌲</div>
+      <h3>Wood Framing</h3>
+      <p>Sistemas construtivos em madeira com padrão internacional. Eficiência energética e estética natural com qualidade premium.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧱</div>
+      <h3>Drywall</h3>
+      <p>Instalação profissional de paredes e forros em gesso acartonado. Acabamentos impecáveis para ambientes residenciais e comerciais.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏠</div>
+      <h3>Construção</h3>
+      <p>Projetos completos do zero ao acabamento. Gerenciamento total da obra com prazos cumpridos e orçamento controlado.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✅</div>
+      <h3>Pós-Construção</h3>
+      <p>Acompanhamento e suporte após a entrega. Garantia de qualidade e resolução rápida de qualquer inconformidade.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Manutenção</h3>
+      <p>Serviços de manutenção preventiva e corretiva. Preservação e valorização do seu imóvel com atendimento ágil.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section" id="sobre">
+  <div class="why-visual">
+    <div class="why-box why-box-2"></div>
+    <div class="why-box why-box-1">
+      <div class="why-center-text">
+        <div class="big-num">10+</div>
+        <div class="big-lbl">Anos de experiência</div>
+      </div>
+    </div>
+    <div class="why-number">MH</div>
+  </div>
+  <div>
+    <div class="section-label">Por que nos escolher</div>
+    <h2 class="section-title">QUALIDADE<br>SEM<br>COMPROMISSO</h2>
+    <p class="section-desc">A Moderno Holding Solution opera no Brasil e no Reino Unido, trazendo os mais altos padrões internacionais de construção.</p>
+    <div class="values-list">
+      <div class="value-item">
+        <div class="value-num">01</div>
+        <div class="value-text">
+          <h4>Qualidade</h4>
+          <p>Materiais premium e execução impecável em cada projeto. Inspecionamos cada detalhe para entregar o melhor resultado.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">02</div>
+        <div class="value-text">
+          <h4>Honestidade</h4>
+          <p>Transparência total em orçamentos, prazos e processos. Construímos relações de confiança duradouras com nossos clientes.</p>
+        </div>
+      </div>
+      <div class="value-item">
+        <div class="value-num">03</div>
+        <div class="value-text">
+          <h4>Padronização</h4>
+          <p>Processos certificados e metodologia rigorosa garantem resultados consistentes e previsíveis em cada entrega.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="processo">
+  <div class="section-label">Como trabalhamos</div>
+  <h2 class="section-title">NOSSO PROCESSO</h2>
+  <p class="section-desc">Da consulta inicial à entrega final, acompanhamos cada etapa com rigor e transparência.</p>
+  <div class="process-steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-dot"></div>
+      <h4>Consulta</h4>
+      <p>Análise das suas necessidades e levantamento detalhado do projeto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-dot"></div>
+      <h4>Orçamento</h4>
+      <p>Proposta transparente com todos os custos e prazos definidos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-dot"></div>
+      <h4>Execução</h4>
+      <p>Obra conduzida por equipe especializada com acompanhamento contínuo.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-dot"></div>
+      <h4>Entrega</h4>
+      <p>Inspeção final e garantia de qualidade antes de cada entrega.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <h2>PRONTO PARA <span style="color:var(--gold)">COMEÇAR</span>?</h2>
+  <p>Entre em contacto hoje e receba um orçamento personalizado sem compromisso.</p>
+  <div class="cta-actions">
+    <a href="https://wa.me/5534999372442" target="_blank" class="btn-primary">Solicitar Orçamento</a>
+    <a href="https://instagram.com/moderno_holding_solution_ltd" target="_blank" class="btn-outline">Ver no Instagram</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contato">
+  <div class="contact-info">
+    <div class="section-label">Fale connosco</div>
+    <h2 class="section-title">ENTRE EM<br>CONTACTO</h2>
+    <p>Estamos prontos para transformar o seu projeto em realidade. Fale connosco hoje e dê o primeiro passo.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <span>Londres, Reino Unido · Brasil</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📸</div>
+        <span>@moderno_holding_solution_ltd</span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📱</div>
+        <span><a href="https://wa.me/5534999372442" target="_blank" style="color:inherit;text-decoration:none;">+55 34 99937-2442</a></span>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">✉️</div>
+        <span>contato@modernoholding.com</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="contact-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nome</label>
+          <input type="text" placeholder="Seu nome">
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input type="tel" placeholder="+44 ou +55">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="seu@email.com">
+      </div>
+      <div class="form-group">
+        <label>Serviço de Interesse</label>
+        <select>
+          <option value="">Selecione um serviço</option>
+          <option>Light Steel Framing</option>
+          <option>Wood Framing</option>
+          <option>Drywall</option>
+          <option>Construção Completa</option>
+          <option>Pós-Construção</option>
+          <option>Manutenção</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensagem</label>
+        <textarea placeholder="Descreva o seu projeto..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;text-align:center;cursor:pointer;" onclick="alert('Mensagem enviada! Entraremos em contacto em breve.')">Enviar Mensagem</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">MODERNO HOLDING SOLUTION LTD.</div>
+    <div class="footer-tagline">Quality · Honesty · Standardisation</div>
+  </div>
+  <div class="footer-flags">🇧🇷 🇬🇧</div>
+  <div class="footer-copy">© 2025 Moderno Holding Solution LTD. Todos os direitos reservados.</div>
+</footer>
+
+</body>
+</html>
